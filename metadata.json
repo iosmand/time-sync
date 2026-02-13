@@ -1,0 +1,5 @@
+{
+  "name": "Time-Sync",
+  "description": "Precision time-tracking dashboard with idle detection and retroactive start capabilities.",
+  "requestFramePermissions": []
+}
