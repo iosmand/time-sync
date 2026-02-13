@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StorageService {
-  private readonly PREFIX = 'time-sync-';
+  private readonly PREFIX = 'worktime-';
 
   getItem<T>(key: string): T | null {
     const item = localStorage.getItem(this.PREFIX + key);

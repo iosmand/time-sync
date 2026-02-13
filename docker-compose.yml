@@ -1,7 +1,7 @@
 services:
-  time-sync:
+  work-time:
     build: .
-    container_name: time-sync
+    container_name: work-time
     ports:
       - "${PORT}:80"
     restart: unless-stopped

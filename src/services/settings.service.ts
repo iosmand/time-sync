@@ -10,7 +10,7 @@ export interface AppSettings {
 
 const DICTIONARY = {
   en: {
-    appTitle: 'Time-Sync',
+    appTitle: 'WorkTime',
     navDashboard: 'Dashboard',
     navCalendar: 'Calendar',
     readyTitle: 'Ready to work?',
@@ -60,7 +60,7 @@ const DICTIONARY = {
     importFail: 'Failed to import. Invalid JSON format.'
   },
   tr: {
-    appTitle: 'Time-Sync',
+    appTitle: 'WorkTime',
     navDashboard: 'Panel',
     navCalendar: 'Takvim',
     readyTitle: 'Çalışmaya hazır mısın?',
