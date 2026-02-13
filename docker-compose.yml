@@ -1,0 +1,7 @@
+services:
+  time-sync:
+    build: .
+    container_name: time-sync
+    ports:
+      - "8080:80"
+    restart: unless-stopped
