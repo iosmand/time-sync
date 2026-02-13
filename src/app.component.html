@@ -1,37 +1,37 @@
 <div class="min-h-screen pb-20 transition-colors">
   <!-- Header -->
-  <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 transition-colors">
+  <header class="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 sticky top-0 z-30 transition-colors">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
+          <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
             T
           </div>
-          <h1 class="text-xl font-bold text-slate-800 dark:text-white tracking-tight hidden md:block">Time-Sync</h1>
+          <h1 class="text-xl font-bold text-zinc-800 dark:text-white tracking-tight hidden md:block">{{ t().appTitle }}</h1>
         </div>
 
         <!-- Navigation -->
-        <nav class="flex space-x-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+        <nav class="flex space-x-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-lg">
            <button (click)="currentView.set('dashboard')"
-                   [class]="currentView() === 'dashboard' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'"
+                   [class]="currentView() === 'dashboard' ? 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm' : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200'"
                    class="px-4 py-1.5 rounded-md text-sm font-medium transition-all">
-             Dashboard
+             {{ t().navDashboard }}
            </button>
            <button (click)="currentView.set('history')"
-                   [class]="currentView() === 'history' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'"
+                   [class]="currentView() === 'history' ? 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-white shadow-sm' : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200'"
                    class="px-4 py-1.5 rounded-md text-sm font-medium transition-all">
-             Calendar
+             {{ t().navCalendar }}
            </button>
         </nav>
       </div>
       
       <div class="flex items-center gap-4">
-        <div class="text-sm text-slate-500 dark:text-slate-400 hidden sm:block">
-          {{ todayDate | date:'fullDate':settingsService.settings().timezone }}
+        <div class="text-sm text-zinc-500 dark:text-zinc-400 hidden sm:block">
+          {{ todayDate | date:'fullDate':undefined:settingsService.getLocale() }}
         </div>
         
         <button (click)="showSettingsModal.set(true)" 
-                class="h-9 w-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 transition-colors"
+                class="h-9 w-9 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 flex items-center justify-center text-zinc-600 dark:text-zinc-400 transition-colors"
                 title="Settings">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
@@ -45,45 +45,45 @@
     
     @if (currentView() === 'dashboard') {
       <!-- Dashboard / Timer Area -->
-      <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-8 text-center relative overflow-hidden transition-colors">
+      <div class="bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-800 p-8 text-center relative overflow-hidden transition-colors">
         <!-- Background Accents -->
-        <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary-50 dark:bg-primary-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-emerald-50 dark:bg-emerald-900/20 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+        <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary-100 dark:bg-primary-900/10 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-zinc-100 dark:bg-zinc-800 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
 
         @if (!tracker.isTracking()) {
           <!-- Inactive State -->
           <div class="py-12 flex flex-col items-center animate-in fade-in duration-500">
             <div class="relative mb-8 group">
-              <div class="absolute inset-0 bg-primary-200 dark:bg-primary-500/20 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div class="absolute inset-0 bg-primary-200 dark:bg-primary-500/10 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
               <button (click)="openStartModal()"
-                      class="relative w-40 h-40 bg-white dark:bg-slate-800 border-8 border-slate-50 dark:border-slate-800 rounded-full shadow-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                <div class="w-28 h-28 bg-primary-600 rounded-full flex items-center justify-center shadow-inner text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-1.5a1 1 0 000-1.664l-3-1.5z" clip-rule="evenodd" />
+                      class="relative w-40 h-40 bg-white dark:bg-zinc-800 border-8 border-zinc-50 dark:border-zinc-800 rounded-full shadow-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <div class="w-28 h-28 bg-primary-500 rounded-full flex items-center justify-center shadow-inner text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-1" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.5 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" clip-rule="evenodd" />
                   </svg>
                 </div>
               </button>
             </div>
-            <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Ready to work?</h2>
-            <p class="text-slate-500 dark:text-slate-400 max-w-sm mx-auto">Track your focus blocks and build a timeline of your productivity.</p>
+            <h2 class="text-2xl font-bold text-zinc-800 dark:text-white mb-2">{{ t().readyTitle }}</h2>
+            <p class="text-zinc-500 dark:text-zinc-400 max-w-sm mx-auto">{{ t().readyDesc }}</p>
           </div>
         } @else {
           <!-- Active State -->
           <div class="py-6 flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div class="mb-4 inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-sm font-medium animate-pulse">
-              <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-              Focus Mode Active
+            <div class="mb-4 inline-flex items-center px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 text-sm font-medium animate-pulse">
+              <span class="w-2 h-2 bg-primary-500 rounded-full mr-2"></span>
+              {{ t().focusActive }}
             </div>
             
-            <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-2">{{ tracker.currentSession()?.title }}</h2>
+            <h2 class="text-3xl font-bold text-zinc-800 dark:text-white mb-2">{{ tracker.currentSession()?.title }}</h2>
             @if (tracker.currentSession()?.description) {
-              <p class="text-slate-500 dark:text-slate-400 mb-8 max-w-md mx-auto">{{ tracker.currentSession()?.description }}</p>
+              <p class="text-zinc-500 dark:text-zinc-400 mb-8 max-w-md mx-auto">{{ tracker.currentSession()?.description }}</p>
             } @else {
               <div class="h-8 mb-8"></div>
             }
 
             <!-- Digital Clock -->
-            <div class="font-mono text-7xl font-bold text-slate-900 dark:text-white tracking-tighter mb-10 tabular-nums">
+            <div class="font-mono text-7xl font-bold text-zinc-900 dark:text-white tracking-tighter mb-10 tabular-nums">
               {{ formatTime(tracker.elapsedSeconds()) }}
             </div>
 
@@ -94,32 +94,32 @@
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd" />
                 </svg>
               </div>
-              Stop Session
+              {{ t().stopSession }}
             </button>
           </div>
         }
 
         <!-- Daily Progress Footer -->
-        <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-center gap-12">
+        <div class="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-800 flex justify-center gap-12">
           <div class="text-center">
-            <div class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide font-semibold mb-1">Total Time Today</div>
-            <div class="text-xl font-mono font-bold text-slate-700 dark:text-slate-200">{{ formatDuration(tracker.totalSecondsToday()) }}</div>
+            <div class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide font-semibold mb-1">{{ t().totalTime }}</div>
+            <div class="text-xl font-mono font-bold text-zinc-700 dark:text-zinc-200">{{ formatDuration(tracker.totalSecondsToday()) }}</div>
           </div>
           
           <!-- Progress Circular (Mini) -->
           <div class="text-center">
-             <div class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide font-semibold mb-1">Daily Goal</div>
+             <div class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide font-semibold mb-1">{{ t().dailyGoal }}</div>
              <div class="flex items-center justify-center gap-2">
-               <div class="text-xl font-mono font-bold text-slate-700 dark:text-slate-200">
+               <div class="text-xl font-mono font-bold text-zinc-700 dark:text-zinc-200">
                  {{ calculateProgress() }}%
                </div>
-               <span class="text-xs text-slate-400">/ {{ settingsService.settings().targetHours }}h</span>
+               <span class="text-xs text-zinc-400">/ {{ settingsService.settings().targetHours }}h</span>
              </div>
           </div>
 
           <div class="text-center">
-            <div class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide font-semibold mb-1">Sessions</div>
-            <div class="text-xl font-mono font-bold text-slate-700 dark:text-slate-200">{{ tracker.todaySessions().length + (tracker.isTracking() ? 1 : 0) }}</div>
+            <div class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide font-semibold mb-1">{{ t().sessions }}</div>
+            <div class="text-xl font-mono font-bold text-zinc-700 dark:text-zinc-200">{{ tracker.todaySessions().length + (tracker.isTracking() ? 1 : 0) }}</div>
           </div>
         </div>
       </div>

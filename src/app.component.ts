@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
+import localeTr from '@angular/common/locales/tr';
 import { TrackerService, WorkSession } from './services/tracker.service';
 import { IdleService } from './services/idle.service';
 import { SettingsService } from './services/settings.service';
@@ -32,12 +33,19 @@ export class AppComponent {
   idleService = inject(IdleService);
   settingsService = inject(SettingsService);
   
+  t = this.settingsService.dictionary;
+  
   showStartModal = signal(false);
   showSettingsModal = signal(false);
   editingSession = signal<WorkSession | null>(null);
   currentView = signal<'dashboard' | 'history'>('dashboard');
 
   todayDate = new Date();
+
+  constructor() {
+    // Register the Turkish locale data so that 'tr-TR' works in DatePipes
+    registerLocaleData(localeTr, 'tr-TR');
+  }
 
   openStartModal() {
     this.showStartModal.set(true);
