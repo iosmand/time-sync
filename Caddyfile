@@ -1,0 +1,14 @@
+:80 {
+    root * /usr/share/caddy/html
+    file_server
+    encode gzip
+
+    @static {
+        path_regexp \.(js|css|png|jpg|jpeg|gif|ico|svg|woff2|woff|ttf|eot)$
+    }
+    header @static Cache-Control "public, immutable"
+
+    header /index.html Cache-Control "no-cache"
+
+    try_files {path} /index.html
+}
